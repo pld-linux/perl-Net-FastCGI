@@ -17,6 +17,9 @@ Source0:	http://www.cpan.org/modules/by-module/Net/%{pdir}-%{pnam}-%{version}.ta
 URL:		http://search.cpan.org/dist/Net-FastCGI/
 BuildRequires:	perl-devel >= 1:5.8.0
 BuildRequires:	rpm-perlprov >= 4.1-13
+%if %{with tests}
+BuildRequires:	perl-Test-HexString
+%endif
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -64,4 +67,5 @@ rm -rf $RPM_BUILD_ROOT
 %{perl_vendorlib}/Net/FastCGI.pm
 %{perl_vendorlib}/Net/FastCGI
 %{_mandir}/man3/Net::FastCGI*.3pm*
-%{_examplesdir}/%{name}-%{version}
+%dir %{_examplesdir}/%{name}-%{version}
+%attr(755,root,root) %{_examplesdir}/%{name}-%{version}/*.pl
